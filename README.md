@@ -568,21 +568,25 @@ Get a list of all tags
 
 **Query parameters**
 
-| param  | type   | Description                                                                                                                                                                                                                                                          |
-| :----- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| sortBy | `enum` | `Default: "name"` &nbsp; `values: "dateAdded", "dateModified", "name", "quoteCount"` <br><br>The field used to sort tags.                                                                                                                                            |
-| order  | `enum` | `values: "asc", "desc"` <br><br>The order in which results are sorted. The default order depends on the sortBy field. For string fields that are sorted alphabetically, the default order is ascending. For number and date fields, the default order is descending. |
+| param  | type   | Description                                                                                                                                                                                                                                                                                         |
+| :----- | :----- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sortBy | `enum` | `Default: "name"` &nbsp; `values: "dateAdded", "dateModified", "name", "quoteCount"` <br><br>The field used to sort tags.                                                                                                                                                                           |
+| order  | `enum` | `values: "asc", "desc"` <br><br>The order in which results are sorted. **The default order depends on the sortBy field**.<br>For string fields that are sorted alphabetically, the default order is ascending. For number and date fields, the default order is descending. |
 
 **Response**
 
 ```ts
-{
-  // The number of all tags by this request
-  count: number
-  // The array of tags
-  results: Array<{
+Array<{
+    // A unique id for this tag
     _id: string
+    // The tag full name
     name: string
-  }>
-}
+    // A slug is a URL-friendly ID derived from the tag name. It can be used as
+    slug: string
+    // The number of quotes attribute to this tag
+    quoteCount: string
+}>
 ```
+**Examples**
+
+Random Quote [try in browser](https://api.quotable.io/tags?sortBy=quoteCount&order=desc)
